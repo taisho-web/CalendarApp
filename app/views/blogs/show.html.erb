@@ -12,12 +12,16 @@
 
 <p>
   <strong>使用金額</strong>
-  <%= @blog.content2 %>円
+  <% if @blog.content2 != nil %>
+    <%= @blog.content2 %>円
+  <% end %>
 </p>
 
 <p>
   <strong>節約金額</strong>
-  <%= @blog_calc %>円
+  <% if @blog.content2 != nil %>
+    <%= @blog_calc %>円
+  <% end %>
 </p>
 
 <p>
