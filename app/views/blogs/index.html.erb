@@ -1,0 +1,85 @@
+<p id="notice"><%= notice %></p>
+
+<div class="toppage">
+<h1 class="top">カレンダー</h1>
+<br>
+
+<div class="row">
+<div class="col-md-4">
+	<div class="schedule">今後の予定一覧</div>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>タイトル</th>
+      <th>日程</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= link_to blog.title , blog %></td>
+        <td><%= blog.start_time.strftime("%m-%d") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= form_with(model: @blog, local: true) do |form| %>
+
+  <div class="title">
+    <div class="form-tag">タイトル<span style="color:red">*</span></div>
+    <%= form.text_field :title %>
+  </div>
+
+
+  <div class="content">
+    <div class="form-tag">予算<span style="color:red">*</span></div>
+    <%= form.number_field :content %>円
+  </div>
+
+  <div class="content">
+    <div class="form-tag">使用金額</div>
+    <%= form.number_field :content2 %>円
+  </div>
+
+    <div class="time">
+    <div class="form-tag">時間</div>
+    <%= form.datetime_select :start_time %>
+  </div>
+
+ <div class="submit">
+    <%= form.submit %>
+ </div>
+<% end %>
+</div>
+
+<br>
+
+
+<br>
+<div class="saving-sum">
+
+</div>
+<div class="col-md-8">
+<%= month_calendar events: @blogs do |date, blogs| %>
+  <%= date.day %>
+  <% blogs.each do |blog| %>
+    <div style="display: flex">
+      <%= link_to blog.title, blog %>
+      <% if blog.content2 != nil %>
+        <% saving = blog.content - blog.content2 %>
+        <% if saving < 0 %>
+          <div style="color:red; margin-left:8px;"><%= saving %></div>
+        <% else %>
+          <div style="margin-left:8px;"><%= saving %></div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+</div>
+</div>
