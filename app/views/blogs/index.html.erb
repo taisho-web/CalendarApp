@@ -61,7 +61,6 @@
 
 <br>
 <div class="saving-sum">
-
 </div>
 <div class="col-md-8">
 <%= month_calendar events: @blogs do |date, blogs| %>
@@ -72,9 +71,9 @@
       <% if blog.content2 != nil %>
         <% saving = blog.content - blog.content2 %>
         <% if saving < 0 %>
-          <div style="color:red; margin-left:8px;"><%= saving %></div>
+          <div style="color:red; margin-left:8px;"><%= saving %>円</div>
         <% else %>
-          <div style="margin-left:8px;"><%= saving %></div>
+          <div style="margin-left:8px;"><%= saving %>円</div>
         <% end %>
       <% end %>
     </div>
